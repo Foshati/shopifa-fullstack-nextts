@@ -2,7 +2,6 @@ import { dirname as pathDirname } from 'path';
 import { fileURLToPath } from 'url';
 import { FlatCompat } from '@eslint/eslintrc';
 
-// حل مشکل تعریف تکراری dirname
 const filename = fileURLToPath(import.meta.url);
 const currentDirname = pathDirname(filename);
 const compat = new FlatCompat({ baseDirectory: currentDirname });
@@ -16,11 +15,12 @@ const eslintConfig = [
     'plugin:prettier/recommended',
   ),
   {
+    // اصلاح بخش پلاگین‌ها
     plugins: {
-      '@typescript-eslint': compat.plugin('@typescript-eslint/eslint-plugin'),
-      react: compat.plugin('eslint-plugin-react'),
-      'react-hooks': compat.plugin('eslint-plugin-react-hooks'),
-      'jsx-a11y': compat.plugin('eslint-plugin-jsx-a11y'),
+      '@typescript-eslint': require('@typescript-eslint/eslint-plugin'),
+      react: require('eslint-plugin-react'),
+      'react-hooks': require('eslint-plugin-react-hooks'),
+      'jsx-a11y': require('eslint-plugin-jsx-a11y'),
     },
     languageOptions: {
       parser: '@typescript-eslint/parser',
