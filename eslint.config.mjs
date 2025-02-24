@@ -9,6 +9,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const compat = new FlatCompat({
+  recommendedConfig: js.configs.recommended,
   baseDirectory: __dirname,
   resolvePluginsRelativeTo: __dirname,
 });
