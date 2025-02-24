@@ -10,61 +10,36 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
-  // پیکربندی‌های پایه Next.js
   ...compat.extends('next/core-web-vitals', 'next/typescript'),
 
   {
-    // تنظیمات پارسر برای استفاده از اطلاعات تایپ
-    languageOptions: {
-      parser: {
-        '@typescript-eslint/parser': ['.ts', '.tsx'],
-      },
-      parserOptions: {
-        ecmaVersion: 'latest',
-        sourceType: 'module',
-        project: ['./tsconfig.json'], // مسیر فایل tsconfig.json شما
-        tsconfigRootDir: __dirname,
-      },
-    },
-
-    // قوانین TypeScript برای جلوگیری از خطاهای رایج
     rules: {
-      // قوانین مربوط به Promise ها
-      '@typescript-eslint/no-misused-promises': 'warn',
-      '@typescript-eslint/no-floating-promises': 'warn',
-      '@typescript-eslint/await-thenable': 'warn',
+      // TypeScript Rules
+      '@typescript-eslint/no-misused-promises': 'off',
+      '@typescript-eslint/no-floating-promises': 'off',
+      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
+      '@typescript-eslint/consistent-type-imports': 'warn',
+      '@typescript-eslint/array-type': ['warn', { default: 'array-simple' }],
 
-      // قوانین مربوط به type safety
-      '@typescript-eslint/no-unused-vars': [
-        'warn',
-        {
-          argsIgnorePattern: '^_',
-          varsIgnorePattern: '^_',
-        },
-      ],
-      '@typescript-eslint/no-unsafe-return': 'warn',
-
-      // قوانین اضافی مفید برای Next.js 15
-      '@typescript-eslint/no-explicit-any': 'warn',
-      '@typescript-eslint/explicit-function-return-type': 'off',
-      '@typescript-eslint/no-empty-function': 'warn',
+      // React Rules
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
-      'react/prop-types': 'off',
-      'react/react-in-jsx-scope': 'off',
-      'react/display-name': 'off',
+      'react/jsx-curly-brace-presence': ['warn', 'never'],
+      'react/jsx-no-useless-fragment': 'warn',
 
-      // قوانین مربوط به import
-      'import/no-anonymous-default-export': 'warn',
-      'import/no-duplicates': 'warn',
-
-      // قوانین عمومی JavaScript
+      // General Rules
+      'import/order': [
+        'warn',
+        {
+          groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+          'newlines-between': 'always',
+        },
+      ],
       'no-console': ['warn', { allow: ['warn', 'error'] }],
       'prefer-const': 'warn',
     },
   },
 
-  // قوانین خاص برای فایل‌های مختلف
   {
     files: ['app/**/*.tsx', 'app/**/*.ts'],
     rules: {
@@ -72,13 +47,16 @@ const eslintConfig = [
     },
   },
 
-  // قوانین متفاوت برای فایل‌های تست
   {
     files: ['**/*.test.ts', '**/*.test.tsx'],
     rules: {
       '@typescript-eslint/no-explicit-any': 'off',
       'no-console': 'off',
     },
+  },
+
+  {
+    ignores: ['node_modules/', '.next/', 'out/', '*.d.ts'],
   },
 ];
 
