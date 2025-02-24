@@ -14,15 +14,27 @@ const eslintConfig = [
   ...compat.extends('next/core-web-vitals', 'next/typescript'),
 
   {
-    // قوانین ساده‌تر که به اطلاعات تایپ نیاز ندارند
-    rules: {
-      // قوانین مرتبط با type information غیرفعال شده‌اند
-      '@typescript-eslint/no-misused-promises': 'off',
-      '@typescript-eslint/no-floating-promises': 'off',
-      '@typescript-eslint/await-thenable': 'off',
-      '@typescript-eslint/no-unsafe-return': 'off',
+    // تنظیمات پارسر برای استفاده از اطلاعات تایپ
+    languageOptions: {
+      parser: {
+        '@typescript-eslint/parser': ['.ts', '.tsx'],
+      },
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+        project: ['./tsconfig.json'], // مسیر فایل tsconfig.json شما
+        tsconfigRootDir: __dirname,
+      },
+    },
 
-      // قوانین باقی‌مانده که به اطلاعات تایپ نیاز ندارند
+    // قوانین TypeScript برای جلوگیری از خطاهای رایج
+    rules: {
+      // قوانین مربوط به Promise ها
+      '@typescript-eslint/no-misused-promises': 'warn',
+      '@typescript-eslint/no-floating-promises': 'warn',
+      '@typescript-eslint/await-thenable': 'warn',
+
+      // قوانین مربوط به type safety
       '@typescript-eslint/no-unused-vars': [
         'warn',
         {
@@ -30,15 +42,23 @@ const eslintConfig = [
           varsIgnorePattern: '^_',
         },
       ],
+      '@typescript-eslint/no-unsafe-return': 'warn',
+
+      // قوانین اضافی مفید برای Next.js 15
       '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/no-empty-function': 'warn',
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
       'react/prop-types': 'off',
       'react/react-in-jsx-scope': 'off',
       'react/display-name': 'off',
+
+      // قوانین مربوط به import
       'import/no-anonymous-default-export': 'warn',
       'import/no-duplicates': 'warn',
+
+      // قوانین عمومی JavaScript
       'no-console': ['warn', { allow: ['warn', 'error'] }],
       'prefer-const': 'warn',
     },
