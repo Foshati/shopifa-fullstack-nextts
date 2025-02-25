@@ -1,9 +1,11 @@
-import { Button } from "@/components/ui/button";
+import { Banner } from '@/components/banner';
 
 export default function Home() {
   return (
-    <div>
-      <Button>click me</Button>
+    <div className='mx-12 p-2'>
+      <Banner />
+      <Banner />
+      <Banner />
     </div>
-  )
+  );
 }
