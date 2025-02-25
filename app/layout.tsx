@@ -1,17 +1,13 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/layout/header/header';
 import Footer from '@/components/layout/footer/footer';
 import { ThemeProvider } from '@/components/darkMode/theme-provider';
+import { Lexend } from 'next/font/google';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+const font = Lexend({
+  weight: ['400', '600'],
+  display: 'swap',
   subsets: ['latin'],
 });
 
@@ -27,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={font.className}>
         <ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
           <Header />
           <main> {children}</main>
