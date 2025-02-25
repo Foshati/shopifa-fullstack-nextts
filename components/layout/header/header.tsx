@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <div
       className={cn(
-        'fixed flex justify-between items-center p-4 border-b border-2 z-10  w-full bg-white dark:bg-[#010101] shadow-sm',
+        'sticky top-0 left-0 flex justify-between items-center p-4 border-b border-2 z-10  w-full bg-white dark:bg-[#010101] shadow-sm ',
       )}
     >
       <span>
