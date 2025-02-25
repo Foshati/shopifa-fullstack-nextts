@@ -26,7 +26,9 @@ export default function RootLayout({
       <body className={font.className}>
         <ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
           <Header />
-          <main> {children}</main>
+          <main className='flex flex-col min-h-screen '>
+            <div className='flex-1'>{children}</div>
+          </main>
 
           <Footer />
         </ThemeProvider>

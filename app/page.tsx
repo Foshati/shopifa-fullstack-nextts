@@ -4,8 +4,6 @@ export default function Home() {
   return (
     <div className='mx-12 p-2'>
       <Banner />
-      <Banner />
-      <Banner />
     </div>
   );
 }
