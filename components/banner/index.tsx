@@ -1,10 +1,12 @@
 import Image from 'next/image';
+
+import { cn } from '@/lib/utils';
 import { Card, CardContent, Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '../ui';
+
 import image1 from './image/1.webp';
 import image2 from './image/2.png';
 import image3 from './image/3.jpg';
 import image4 from './image/4.webp';
-import { cn } from '@/lib/utils';
 
 export function Banner() {
   return (
